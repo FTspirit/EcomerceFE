@@ -32,7 +32,7 @@ const FiltersProvider = ({ children }) => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get(
-          "http://127.0.0.1:9875/v4/product/list-product"
+          "http://10.10.60.103:9875/v4/product/list-product"
         );
         const products = response.data;
 

@@ -1,6 +1,6 @@
 ## SoundTech | React eCommerce Web App
 
-### [Demo Link](https://SoundTech.netlify.app/) 🔗
+### [Demo Link]() 🔗
 
 Audio Store eCommerce Website, built with **React JS**. <br/>
 State management using Context API.
@@ -33,7 +33,7 @@ State management using Context API.
 
 ## Author:
 
-- **Gulshan Songara** - **[Portfolio Website](https://gulshansongara.netlify.app)**, **[Linkedin](https://www.linkedin.com/in/gulshan-songara/)**
+- **FT SPIRIT**
 
 <br/>
 

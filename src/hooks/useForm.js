@@ -25,7 +25,7 @@ const useForm = () => {
     let loggedUserInfo;
     try {
       const response = await axios.post(
-        "http://10.10.60.103:9875/v4/auth/login-with-password",
+        "https://api-staging.gofa.vn/ecomerce/api/v4/auth/login-with-password",
         {
           phone_number: inputValues.phone,
           password: inputValues.password,

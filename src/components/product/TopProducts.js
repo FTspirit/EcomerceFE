@@ -14,7 +14,7 @@ const TopProducts = () => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get(
-          "http://10.10.60.103:9875/v4/product/list-product"
+          "https://api-staging.gofa.vn/ecomerce/api/v4/product/list-product"
         );
         const fetchedProducts = response.data;
         setProducts(fetchedProducts);

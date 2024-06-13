@@ -18,7 +18,7 @@ const FeaturedSlider = () => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get(
-          "http://127.0.0.1:4445/v4/product/list-product"
+          "http://127.0.0.1:9875/v4/product/list-product"
         );
         const products = response.data;
         const filteredProducts = products.filter(

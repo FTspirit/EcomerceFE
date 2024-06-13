@@ -2,9 +2,26 @@
 import React from "react";
 import { Container, Box, Typography, Button } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
 
 const PaymentSuccess = () => {
+  const query = useQuery();
+  const code = query.get("code");
+  const id = query.get("id");
+  const cancel = query.get("cancel");
+  const status = query.get("status");
+  const orderCode = query.get("orderCode");
+
+  console.log("code", code);
+  console.log("id", id);
+  console.log("cancel", cancel);
+  console.log("status", status);
+  console.log("orderCode", orderCode);
+
   return (
     <Container maxWidth="sm">
       <Box

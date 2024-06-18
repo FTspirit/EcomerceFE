@@ -80,21 +80,21 @@ const Cart = () => {
 
   const onCheckoutPayOS = async () => {
     try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_API_HOST}/v4/payos/create-payment`,
-        {
-          amount: totalAmount,
-          description: "Soundtech thanh toán",
-          orderCode: parseInt(generateRandomString(5)),
-        }
-      );
-      const { orderUrl } = response.data;
-
-      if (orderUrl) {
-        window.open(orderUrl, "_blank");
-      } else {
-        console.error("No order URL returned from the API");
-      }
+      console.log(cartItems);
+      // const response = await axios.post(
+      //   `${process.env.REACT_APP_API_HOST}/v4/payos/create-payment`,
+      //   {
+      //     amount: totalAmount,
+      //     description: "Soundtech thanh toán",
+      //     orderCode: parseInt(generateRandomString(5)),
+      //   }
+      // );
+      // const { orderUrl } = response.data;
+      // if (orderUrl) {
+      //   window.open(orderUrl, "_blank");
+      // } else {
+      //   console.error("No order URL returned from the API");
+      // }
     } catch (error) {
       console.error("Error during checkout:", error);
     }
@@ -169,11 +169,8 @@ const Cart = () => {
                       <b>{displayTotalAmount}</b>
                     </div>
                   </div>
-                  <div
-                    className="order_summary_details"
-                    onClick={onCheckoutPayOS}
-                  >
-                    <div className="price">
+                  <div className="order_summary_details">
+                    <div className="price" onClick={onCheckoutPayOS}>
                       <span>Thanh toán PayOS</span>
                       <b>
                         <img

@@ -17,6 +17,8 @@ const Cart = () => {
 
   const cartQuantity = cartItems.length;
 
+  const customer = JSON.parse(localStorage.getItem("customer"));
+
   // total original price
   const cartTotal = cartItems.map((item) => {
     return item.original_price * item.quantity;
@@ -80,21 +82,43 @@ const Cart = () => {
 
   const onCheckoutPayOS = async () => {
     try {
-      console.log(cartItems);
-      // const response = await axios.post(
-      //   `${process.env.REACT_APP_API_HOST}/v4/payos/create-payment`,
-      //   {
-      //     amount: totalAmount,
-      //     description: "Soundtech thanh toán",
-      //     orderCode: parseInt(generateRandomString(5)),
-      //   }
-      // );
-      // const { orderUrl } = response.data;
-      // if (orderUrl) {
-      //   window.open(orderUrl, "_blank");
-      // } else {
-      //   console.error("No order URL returned from the API");
-      // }
+      let totalAmount = 0;
+      for (let i = 0; i < cartItems.length; i++) {
+        totalAmount += cartItems[i].final_price * cartItems[i].quantity;
+      }
+      const customerId = customer.id;
+      const is_delivery = false;
+      const payment = "PayOS";
+      const product_data = cartItems.map((item) => ({
+        product_id: item.id,
+        amount: item.quantity,
+        price: item.final_price,
+      }));
+      const createOrder = {
+        total_amount: totalAmount,
+        customer_id: customerId,
+        is_delivery,
+        payment,
+        product_data,
+      };
+      await axios.post(
+        `${process.env.REACT_APP_API_HOST}/v4/order/create`,
+        createOrder
+      );
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_HOST}/v4/payos/create-payment`,
+        {
+          amount: totalAmount,
+          description: "Soundtech thanh toán",
+          orderCode: parseInt(generateRandomString(5)),
+        }
+      );
+      const { orderUrl } = response.data;
+      if (orderUrl) {
+        window.open(orderUrl, "_blank");
+      } else {
+        console.error("No order URL returned from the API");
+      }
     } catch (error) {
       console.error("Error during checkout:", error);
     }
